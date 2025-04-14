@@ -4,7 +4,6 @@ $user = "root";
 $password = "";
 $dbname = "employedb";
 
-$pdo = null;
 
 try {
 
