@@ -1,14 +1,34 @@
 <?php
 include('./connectDB.php');
 
-function getInfos($nom, $prenom, $mail, $num) {
-    $fichier = "employe.txt";
-    $handle = fopen($fichier, 'a');
+$message = "";
 
-    if($handle) {
-        fwrite($handle, "INSERT INTO employe (nom, prenom, mail, telephone) VALUES ('$nom', '$prenom', '$mail', '$num');\n");
-        fclose($handle);
-    }
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+   $nom = isset($_POST["nom"]) ? trim($_POST["nom"]) : "";
+   $prenom = isset($_POST["prenom"]) ? trim($_POST["prenom"]) : "";
+   $email = isset($_POST["email"]) ? trim($_POST["email"]) : "";
+   $num = isset($_POST["num"]) ? trim($_POST["num"]) : "";
+
+
+   if(!empty($nom) && !empty($prenom) && !empty($email) && !empty($num)) {
+        try {
+            $stmt = $pdo->prepare("INSERT INTO employe (nom, prenom, email, telephone) VALUES (:nom, :prenom, :email, :telephone)");
+            $stmt->execute([
+                ':nom' => $nom,
+                ':prenom' => $prenom,
+                ':email' => $email,
+                ':telephone' => $num
+            ]);
+            $message = "✔";
+        } catch (PDOException $e) {
+            $message = "❌" . $e->getMessage();
+        }
+
+   } else {
+    $message = "Remplir le formulaire";
+   }
 }
+
+?>
 
 
