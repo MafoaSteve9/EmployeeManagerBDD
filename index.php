@@ -25,6 +25,7 @@
 
 <?php 
 include("ajouter.php");
+include("delete.php");
 
 $stmt = $pdo->query("SELECT * FROM employe");
 $lignes = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -59,8 +60,8 @@ echo '</pre>';
                     <td><?= htmlspecialchars($donnees['email'] ?? '') ?></td>
                     <td><?= htmlspecialchars($donnees['telephone'] ?? '') ?></td>
                     <td>
-                        <a href='modifie.php?id=<?= $donnees['id'] ?>'><button>Modifier</button></a>
-                        <a href='index.php?delete_id=<?= $donnees['id'] ?>'><button>Supprimer</button></a>
+                        <a href='modifie.php?id=<?= $donnees['id'] ?>'><button type="button">Modifier</button></a>
+                        <a href='index.php?delete_id=<?= $donnees['id'] ?>'><button type="button">Supprimer</button></a>
                     </td>
                 </tr>
             <?php endforeach; ?>
