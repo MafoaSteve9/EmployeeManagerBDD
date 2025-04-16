@@ -59,7 +59,7 @@ echo '</pre>';
                     <td><?= htmlspecialchars($donnees['email'] ?? '') ?></td>
                     <td><?= htmlspecialchars($donnees['telephone'] ?? '') ?></td>
                     <td>
-                        <a href='modifier.php?id=<?= $donnees['id'] ?>'><button>Modifier</button></a>
+                        <a href='modifie.php?id=<?= $donnees['id'] ?>'><button>Modifier</button></a>
                         <a href='index.php?delete_id=<?= $donnees['id'] ?>'><button>Supprimer</button></a>
                     </td>
                 </tr>
